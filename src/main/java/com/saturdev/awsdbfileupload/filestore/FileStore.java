@@ -21,21 +21,20 @@ public class FileStore {
 
     public void save(String path,
                      String fileName,
-                     Optional<Map<String,String>> optionalMetadata,
+                     Optional<Map<String, String>> optionalMetadata,
                      InputStream inputStream) {
-        ObjectMetadata objectMetadata =  new ObjectMetadata();
+        ObjectMetadata objectMetadata = new ObjectMetadata();
         optionalMetadata.ifPresent(map -> {
-            if (!map.isEmpty()){
+            if (!map.isEmpty()) {
                 map.forEach(objectMetadata::addUserMetadata);
             }
         });
         try {
             s3.putObject(path, fileName, inputStream, objectMetadata);
-        }catch (AmazonServiceException e){
+        } catch (AmazonServiceException e) {
             throw new IllegalStateException("Failed to upload file to s3", e);
         }
     }
-
 
 
 }

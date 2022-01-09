@@ -1,11 +1,11 @@
 package com.saturdev.awsdbfileupload.profile;
 
-import com.saturdev.awsdbfileupload.datastore.FakeUserProfileDataStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
 
 @Service
@@ -35,12 +35,12 @@ public class UserProfileService {
         }
 
         //3. Check if file is an image
-        if (!file.getContentType().startsWith("image/")) {
+        if (!Objects.requireNonNull(file.getContentType()).startsWith("image/")) {
             throw new RuntimeException("Failed to store file " + file.getOriginalFilename() + " because file is not an image");
         }
 
         //4. grab some metadata about the image
-        Metadata
+
         //5. Save the image to S3
 
         //6. Update the user profile in our database
