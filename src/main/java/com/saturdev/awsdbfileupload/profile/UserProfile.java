@@ -17,11 +17,11 @@ public class UserProfile {
         this.userProfileImageLink = userProfileImageLink;
     }
 
-    public UUID getUserId() {
+    public UUID getUserProfileId() {
         return userProfileId;
     }
 
-    public void setUserId(UUID userProfileId) {
+    public void setUserProfileId(UUID userProfileId) {
         this.userProfileId = userProfileId;
     }
 

@@ -24,25 +24,10 @@ public class UserProfileService {
 
     public void uploadUserProfileImage(UUID userProfileId, MultipartFile file) {
         //1. Check if image is not empty
-        if (file.isEmpty()) {
-            throw new RuntimeException("Failed to store empty file " + file.getOriginalFilename());
-        }
-
-        //2. Check if user profile exists
-        UserProfile userProfile = userProfileDataAccessService.getUserProfile(userProfileId);
-        if (userProfile == null) {
-            throw new RuntimeException("Failed to store file " + file.getOriginalFilename() + " because user profile " + userProfileId + " does not exist");
-        }
-
+        //2. Check if user profile exists in database
         //3. Check if file is an image
-        if (!Objects.requireNonNull(file.getContentType()).startsWith("image/")) {
-            throw new RuntimeException("Failed to store file " + file.getOriginalFilename() + " because file is not an image");
-        }
-
         //4. grab some metadata about the image
-
-        //5. Save the image to S3
-
+        //5. Save the image to S3 and update database (userProfileImageLink) with s3 image link
         //6. Update the user profile in our database
     }
 }
